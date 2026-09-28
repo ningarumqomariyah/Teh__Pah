@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEH PAH - Segarnya Teh, Cerita di Setiap Tegukan</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* === RESET & VARIABEL === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --telang-blue: #4a6fa5;
+            --telang-purple: #7b4b8a;
+            --rosella-red: #c0392b;
+            --lemon-yellow: #f1c40f;
+            --sereh-green: #27ae60;
+            --cream: #fdfaf3;
+            --white: #ffffff;
+            --soft-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            --border-radius: 20px;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cream);
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* === NAVBAR === */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--telang-blue);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--rosella-red);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 1rem;
+            color: #444;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--telang-blue), var(--rosella-red));
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--telang-blue);
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 5% 80px;
+            background: linear-gradient(135deg, #f0f4ff 0%, #fdfaf3 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(74, 111, 165, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            flex: 1;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--telang-blue);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content h1 span {
+            color: var(--rosella-red);
+        }
+
+        .hero-content .slogan {
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .hero-content .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--telang-blue), var(--telang-purple));
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 20px rgba(74, 111, 165, 0.3);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-content .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(74, 111, 165, 0.4);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 400px;
+            border-radius: 30px;
+            box-shadow: var(--soft-shadow);
+            transition: var(--transition);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* === SECTION TITLE === */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2.5rem;
+            color: var(--telang-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* === BEST SELLER SECTION === */
+        .best-seller {
+            padding: 80px 5%;
+            background: var(--white);
+        }
+
+        .best-seller-card {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            box-shadow: var(--soft-shadow);
+            position: relative;
+            border: 2px solid rgba(74, 111, 165, 0.1);
+        }
+
+        .best-seller-badge {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: var(--lemon-yellow);
+            color: #333;
+            font-weight: 700;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(241, 196, 15, 0.4);
+            transform: rotate(-5deg);
+            z-index: 2;
+        }
+
+        .best-seller-image {
+            flex: 1;
+        }
+
+        .best-seller-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+            transition: var(--transition);
+        }
+
+        .best-seller-image img:hover {
+            transform: scale(1.03);
+        }
+
+        .best-seller-info {
+            flex: 1;
+        }
+
+        .best-seller-info h3 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2.2rem;
+            color: var(--telang-blue);
+            margin-bottom: 1rem;
+        }
+
+        .best-seller-info .desc {
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .best-seller-info .composition {
+            background: #f0f4ff;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .best-seller-info .composition strong {
+            color: var(--telang-blue);
+        }
+
+        .best-seller-info .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--rosella-red);
+            margin-bottom: 1.5rem;
+        }
+
+        .best-seller-info .price span {
+            font-size: 1rem;
+            color: #888;
+            font-weight: 400;
+        }
+
+        .btn-order {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background: linear-gradient(135deg, var(--rosella-red), #e74c3c);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(192, 57, 43, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-order:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(192, 57, 43, 0.4);
+        }
+
+        /* === MENU SECTION === */
+        .menu {
+            padding: 80px 5%;
+            background: linear-gradient(180deg, #fdfaf3 0%, #f0f4ff 100%);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--soft-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .menu-card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-card-content h3 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--telang-blue);
+        }
+
+        .menu-card-content .desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .menu-card-content .comp {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 1rem;
+            background: #f9f9f9;
+            padding: 0.5rem 0.8rem;
+            border-radius: 10px;
+        }
+
+        .menu-card-content .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--rosella-red);
+            margin-bottom: 1rem;
+        }
+
+        .menu-card-content .btn-card {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, var(--telang-blue), var(--telang-purple));
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-card-content .btn-card:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        /* === ABOUT SECTION === */
+        .about {
+            padding: 80px 5%;
+            background: var(--white);
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-container p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-container .highlight {
+            color: var(--telang-blue);
+            font-weight: 600;
+        }
+
+        .about-container .highlight-red {
+            color: var(--rosella-red);
+            font-weight: 600;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: #1a1a2e;
+            color: #eee;
+            padding: 60px 5% 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-brand p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact h4, .footer-social h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--lemon-yellow);
+        }
+
+        .footer-contact p {
+            margin-bottom: 0.5rem;
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact i, .footer-social i {
+            margin-right: 0.5rem;
+            color: var(--lemon-yellow);
+        }
+
+        .footer-social a {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ccc;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .best-seller-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+            .best-seller-image img {
+                max-width: 280px;
+            }
+            .best-seller-badge {
+                top: -10px;
+                left: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 5%;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 100px 5% 60px;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content .slogan {
+                font-size: 1.1rem;
+            }
+            .hero-image {
+                margin-top: 2rem;
+            }
+            .hero-image img {
+                max-width: 280px;
+            }
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            .best-seller-info h3 {
+                font-size: 1.8rem;
+            }
+            .best-seller-info .price {
+                font-size: 1.5rem;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-social a {
+                display: inline-block;
+                margin: 0 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content .btn-primary {
+                padding: 0.8rem 1.8rem;
+                font-size: 1rem;
+            }
+            .best-seller-card {
+                padding: 1.5rem;
+            }
+            .best-seller-info h3 {
+                font-size: 1.5rem;
+            }
+            .menu-card img {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">TEH <span>PAH</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#best-seller">Best Seller</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>TEH <span>PAH</span></h1>
+            <p class="slogan">"Segarnya Teh, Cerita di Setiap Tegukan"</p>
+            <a href="#menu" class="btn-primary">Lihat Menu</a>
+        </div>
+        <div class="hero-image">
+            <!-- Menggunakan gambar Telang Original sebagai visual utama -->
+            <img src="https://i.ibb.co.com/6R0zXq5/telang-original.jpg" alt="Telang Original - TEH PAH">
+        </div>
+    </section>
+
+    <!-- BEST SELLER SECTION -->
+    <section class="best-seller" id="best-seller">
+        <div class="section-title">
+            <h2>Best Seller</h2>
+            <p>Produk unggulan yang paling dicari</p>
+        </div>
+        <div class="best-seller-card">
+            <div class="best-seller-badge">⭐ BEST SELLER</div>
+            <div class="best-seller-image">
+                <img src="https://i.ibb.co.com/6R0zXq5/telang-original.jpg" alt="Telang Original - Best Seller">
+            </div>
+            <div class="best-seller-info">
+                <h3>Telang Original</h3>
+                <p class="desc">Minuman herbal kekinian dari bunga telang pilihan dengan perpaduan madu, sereh, dan lemon. Menghadirkan warna biru alami yang cantik dan rasa segar yang menyehatkan.</p>
+                <div class="composition">
+                    <strong>Komposisi:</strong> Bunga Telang, Madu, Sereh, Lemon
+                </div>
+                <div class="price">Rp 7.000 <span>/ cup</span></div>
+                <a href="#menu" class="btn-order">Pesan Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section class="menu" id="menu">
+        <div class="section-title">
+            <h2>Menu Kami</h2>
+            <p>Empat varian minuman herbal kekinian</p>
+        </div>
+        <div class="menu-grid">
+            <!-- Produk 1: Telang Original (Best Seller) -->
+            <div class="menu-card">
+                <img src="https://i.ibb.co.com/6R0zXq5/telang-original.jpg" alt="Telang Original">
+                <div class="menu-card-content">
+                    <h3>Telang Original</h3>
+                    <p class="desc">Bunga telang dengan madu, sereh, dan lemon. Warna biru alami yang menyegarkan.</p>
+                    <p class="comp">Bunga Telang, Madu, Sereh, Lemon</p>
+                    <div class="price">Rp 7.000</div>
+                    <button class="btn-card">Pesan</button>
+                </div>
+            </div>
+            <!-- Produk 2: Telang Sparkling -->
+            <div class="menu-card">
+                <img src="https://i.ibb.co.com/6R0zXq5/telang-sparkling.jpg" alt="Telang Sparkling">
+                <div class="menu-card-content">
+                    <h3>Telang Sparkling</h3>
+                    <p class="desc">Bunga telang, sereh, soda, dan sirup coco pandan. Segar dengan sensasi sparkling.</p>
+                    <p class="comp">Bunga Telang, Sereh, Soda, Sirup Coco Pandan</p>
+                    <div class="price">Rp 8.000</div>
+                    <button class="btn-card">Pesan</button>
+                </div>
+            </div>
+            <!-- Produk 3: Rosella Original -->
+            <div class="menu-card">
+                <img src="https://i.ibb.co.com/6R0zXq5/rosella-original.jpg" alt="Rosella Original">
+                <div class="menu-card-content">
+                    <h3>Rosella Original</h3>
+                    <p class="desc">Rosella, madu, sereh, dan lemon. Warna merah elegan dengan rasa alami yang segar.</p>
+                    <p class="comp">Rosella, Madu, Sereh, Lemon</p>
+                    <div class="price">Rp 7.000</div>
+                    <button class="btn-card">Pesan</button>
+                </div>
+            </div>
+            <!-- Produk 4: Rosella Sparkling -->
+            <div class="menu-card">
+                <img src="https://i.ibb.co.com/6R0zXq5/rosella-sparkling.jpg" alt="Rosella Sparkling">
+                <div class="menu-card-content">
+                    <h3>Rosella Sparkling</h3>
+                    <p class="desc">Perpaduan sereh, soda, dan sirup dengan warna merah khas rosella. Segar dan kekinian.</p>
+                    <p class="comp">Sereh, Soda, Sirup, Rosella</p>
+                    <div class="price">Rp 8.000</div>
+                    <button class="btn-card">Pesan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="section-title">
+            <h2>Tentang TEH PAH</h2>
+        </div>
+        <div class="about-container">
+            <p><span class="highlight">TEH PAH</span> adalah brand minuman herbal kekinian yang memadukan bahan-bahan alami pilihan seperti <span class="highlight">bunga telang</span>, <span class="highlight-red">rosella</span>, sereh, lemon, dan madu. Dengan tambahan soda serta sirup, kami menghadirkan minuman yang tidak hanya segar tetapi juga menyehatkan.</p>
+            <p>Kami percaya bahwa setiap tegukan memiliki cerita. Oleh karena itu, kami mengemas minuman tradisional dengan sentuhan modern yang aesthetic, cocok untuk anak muda yang aktif dan peduli akan gaya hidup sehat.</p>
+            <p>Dari warna biru alami bunga telang hingga merah menggoda rosella, setiap varian dirancang untuk memberikan pengalaman minum yang menyenangkan dan tak terlupakan.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>TEH PAH</h3>
+                <p>"Segarnya Teh, Cerita di Setiap Tegukan"</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Kontak</h4>
+                <p><i class="fas fa-phone"></i> +62 812 3456 7890</p>
+                <p><i class="fas fa-envelope"></i> hello@tehpah.id</p>
+                <p><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</p>
+            </div>
+            <div class="footer-social">
+                <h4>Media Sosial</h4>
+                <a href="#"><i class="fab fa-instagram"></i> @tehpah.id</a>
+                <a href="#"><i class="fab fa-tiktok"></i> @tehpah.id</a>
+                <a href="#"><i class="fab fa-whatsapp"></i> 0812 3456 7890</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 TEH PAH. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
